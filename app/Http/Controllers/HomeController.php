@@ -23,6 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+        if(!isset(Auth::user()->id)){
+            return view('auth.login');
+        }
+
         return view('home');
     }
 }
