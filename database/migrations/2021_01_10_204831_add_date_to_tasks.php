@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTaskTable extends Migration
+class AddDateToTasks extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateTaskTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::table('tasks', function (Blueprint $table) {
             //
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->text('description');
+            $table->dateTime('updated_at');
+            $table->dateTime('created_at');
+            $table->text("description");
         });
     }
 
