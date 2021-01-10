@@ -17,7 +17,6 @@ class AddDateToTasks extends Migration
             //
             $table->dateTime('updated_at');
             $table->dateTime('created_at');
-            $table->text("description");
         });
     }
 
