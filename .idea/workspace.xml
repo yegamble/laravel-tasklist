@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b7ed1fbf-3638-4604-bad9-cdac138223a4" name="Default Changelist" comment="modify migration">
+    <list default="true" id="b7ed1fbf-3638-4604-bad9-cdac138223a4" name="Default Changelist" comment="laravel relationships for tasks.">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/TaskList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_10_204831_add_date_to_tasks.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_10_204831_add_date_to_tasks.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TaskController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TaskController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Task.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Task.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasklist.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/tasklist.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +178,7 @@
       <updated>1610300072298</updated>
       <workItem from="1610300073901" duration="630000" />
       <workItem from="1610309293375" duration="418000" />
-      <workItem from="1610309742353" duration="3478000" />
+      <workItem from="1610309742353" duration="8746000" />
     </task>
     <task id="LOCAL-00001" summary="add vuetify and task controller.">
       <created>1610310621048</created>
@@ -201,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610312332005</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="laravel relationships for tasks.">
+      <created>1610313329397</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1610313329397</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,6 +237,7 @@
     <MESSAGE value="add vuetify and task controller." />
     <MESSAGE value="add task relationship." />
     <MESSAGE value="modify migration" />
-    <option name="LAST_COMMIT_MESSAGE" value="modify migration" />
+    <MESSAGE value="laravel relationships for tasks." />
+    <option name="LAST_COMMIT_MESSAGE" value="laravel relationships for tasks." />
   </component>
 </project>

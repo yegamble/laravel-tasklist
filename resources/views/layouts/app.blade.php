@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'Tasklist') }}</title>
 
     <!-- Scripts -->
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->

@@ -7,10 +7,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
-
-
+import Vue from "vue";
 import Vuetify from 'vuetify';
-Vue.use(Vuetify);
 
 
 /**
@@ -25,7 +23,8 @@ Vue.use(Vuetify);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
+Vue.component('task-list', require('./components/TaskList').default);
+Vue.use(Vuetify);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -34,5 +33,13 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
-    vuetify: new Vuetify(),
+    vuetify: new Vuetify({
+        defaultAssets: {
+            font: true,
+            icons: 'md'
+        },
+        icons: {
+            iconfont: 'mdi',
+        }
+    })
 });
