@@ -37,14 +37,13 @@ $ docker-composer up -d
 
 <b>SQLite</b>
 
-If using SQLite due to environment issues with docker, open the .env file open, look for the line labelled, DB_DATABASE 
+If using SQLite due to environment issues with docker (e.g. groupadd: invalid group ID 'sail'), open the .env file open, look for the line labelled, DB_DATABASE 
 and replace with the absolute directory of the file tasklist.sqlite (within the root folder of
 this repository).
 
 ```
 $ nano .env
 ```
-
 
 Then generate the app key and start the service.
 ```

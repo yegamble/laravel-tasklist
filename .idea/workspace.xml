@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7ed1fbf-3638-4604-bad9-cdac138223a4" name="Default Changelist" comment="MySQL support">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -172,7 +173,7 @@
       <updated>1610300072298</updated>
       <workItem from="1610300073901" duration="630000" />
       <workItem from="1610309293375" duration="418000" />
-      <workItem from="1610309742353" duration="16457000" />
+      <workItem from="1610309742353" duration="16656000" />
     </task>
     <task id="LOCAL-00001" summary="add vuetify and task controller.">
       <created>1610310621048</created>
@@ -258,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610329784343</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="MySQL support">
+      <created>1610329862243</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1610329862243</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
