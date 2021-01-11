@@ -37800,7 +37800,7 @@ var render = function() {
                               ),
                               [
                                 _vm._v(
-                                  "\n                        New Item\n                    "
+                                  "\n                        New Task\n                    "
                                 )
                               ]
                             )

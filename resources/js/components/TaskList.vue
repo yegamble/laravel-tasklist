@@ -28,7 +28,7 @@
                             v-bind="attrs"
                             v-on="on"
                         >
-                            New Item
+                            New Task
                         </v-btn>
                     </template>
                     <v-card>
