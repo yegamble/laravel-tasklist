@@ -19,6 +19,18 @@ $ git clone https://github.com/yegamble/tasklist.git
 
 $ cd tasklist
 
+$ cp .env.example .env 
+
+$ nano .env
+```
+
+now, you should have a .env file open, look for the line labelled, DB_DATABASE 
+and replace with the absolute directory of the file tasklist.sqlite (within the root folder of
+this repository). 
+
+
+```
+
 $ php artisan migrate && php artisan serve
 ```
 
