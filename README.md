@@ -4,7 +4,7 @@
 
 ## About Task list
 
-A simple digital task list built in laravel and VueJS.
+A simple digital task list built in laravel and VueJS (inclduing VuetifyJS Material Design Framework).
 
 - Add, Edit, and delete tasks to organise your day
 - Lightweight, works in any server or local computer environment  
