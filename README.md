@@ -37,7 +37,7 @@ $ docker-composer up -d
 
 <b>SQLite</b>
 
-If using SQLite due to environment issues, open the .env file open, look for the line labelled, DB_DATABASE 
+If using SQLite due to environment issues with docker, open the .env file open, look for the line labelled, DB_DATABASE 
 and replace with the absolute directory of the file tasklist.sqlite (within the root folder of
 this repository).
 
