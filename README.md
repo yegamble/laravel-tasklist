@@ -29,10 +29,14 @@ and replace with the absolute directory of the file tasklist.sqlite (within the 
 this repository). 
 
 
+Then generate the app key and start the service.
 ```
+$ php artisan key:generate
 
-$ php artisan migrate && php artisan serve
+$ php artisan migrate && php artisan config:clear && php artisan serve
 ```
 
 After the commands execute, open your browser and navigate to https://localhost:8000
 (port may vary if 8000 is busy, the command line terminal will display this number)
+
+In some cases, the app

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b7ed1fbf-3638-4604-bad9-cdac138223a4" name="Default Changelist" comment="php task list.">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+    <list default="true" id="b7ed1fbf-3638-4604-bad9-cdac138223a4" name="Default Changelist" comment="update readme">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,7 +167,7 @@
       <updated>1610300072298</updated>
       <workItem from="1610300073901" duration="630000" />
       <workItem from="1610309293375" duration="418000" />
-      <workItem from="1610309742353" duration="15320000" />
+      <workItem from="1610309742353" duration="15578000" />
     </task>
     <task id="LOCAL-00001" summary="add vuetify and task controller.">
       <created>1610310621048</created>
@@ -226,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610328610592</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="update readme">
+      <created>1610328836191</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1610328836191</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,6 +258,7 @@
     <MESSAGE value="laravel relationships for tasks.&#10;add form and controller store and update methods." />
     <MESSAGE value="task list completed." />
     <MESSAGE value="php task list." />
-    <option name="LAST_COMMIT_MESSAGE" value="php task list." />
+    <MESSAGE value="update readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="update readme" />
   </component>
 </project>
