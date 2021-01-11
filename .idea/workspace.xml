@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7ed1fbf-3638-4604-bad9-cdac138223a4" name="Default Changelist" comment="update readme">
+      <change afterPath="$PROJECT_DIR$/simple-task-list.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -151,6 +153,11 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
@@ -167,7 +174,7 @@
       <updated>1610300072298</updated>
       <workItem from="1610300073901" duration="630000" />
       <workItem from="1610309293375" duration="418000" />
-      <workItem from="1610309742353" duration="15578000" />
+      <workItem from="1610309742353" duration="15766000" />
     </task>
     <task id="LOCAL-00001" summary="add vuetify and task controller.">
       <created>1610310621048</created>
@@ -232,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610328836191</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="update readme">
+      <created>1610328978504</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1610328978504</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
