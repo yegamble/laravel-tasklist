@@ -21,10 +21,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('task/', [App\Http\Controllers\TaskController::class, 'store']);
+Route::put('task/{id}', [App\Http\Controllers\TaskController::class, 'update']);
+Route::delete('task/{id}', [App\Http\Controllers\TaskController::class, 'destroy']);

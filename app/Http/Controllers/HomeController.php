@@ -27,10 +27,12 @@ class HomeController extends Controller
 
         if(!isset(Auth::user()->id)){
             return view('auth.login');
+        } else if (isset(Auth::user()->id)){
+
+            $tasks = Auth::user()->tasks;
+            return view('home', compact('tasks'));
+        } else {
+            return view('auth.login');
         }
-
-        $tasks = Auth::user()->tasks;
-
-        return view('home',compact('tasks'));
     }
 }

@@ -29,7 +29,7 @@ class TaskController extends Controller
             $task->description = $request->description;
             $task->save();
 
-            return response()->json($task);
+            return response()->json(json_decode(json_encode($task)));
 
         } catch (Exception $e){
             $this->exceptions->report($e);
@@ -57,10 +57,23 @@ class TaskController extends Controller
             $task->description = $request->description;
             $task->save();
 
-            return response()->json($task);
+            return response()->json(json_decode(json_encode($task)));
 
         } catch (\Exception $e){
             $this->exceptions->report($e);
         }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param $id
+     * @return Response
+     */
+    public function destroy( $id )
+    {
+        Task::destroy($id);
+
+        return response()->json("deleted");
     }
 }

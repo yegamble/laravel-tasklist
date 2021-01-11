@@ -1988,12 +1988,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     'tasks': Array
@@ -2003,93 +1997,137 @@ __webpack_require__.r(__webpack_exports__);
       dialog: false,
       dialogDelete: false,
       headers: [{
+        text: '',
         align: 'start',
         sortable: false,
-        value: 'id'
+        value: 'editedIndex'
       }, {
-        text: 'Description',
+        text: 'Task',
         value: 'description'
       }, {
-        text: 'Date Created',
-        value: 'updated_at'
-      }, {
-        text: 'Date Modified',
-        value: 'modified_at'
-      }, {
-        text: 'Actions',
+        text: 'Edit/Delete',
         value: 'actions',
         sortable: false
       }],
+      tasksArray: [],
       editedIndex: -1,
       editedItem: {
+        id: 0,
         description: ''
       },
       defaultItem: {
+        id: 0,
         description: ''
-      },
-      computed: {
-        formTitle: function formTitle() {
-          return this.editedIndex === -1 ? 'New Task' : 'Edit Task';
-        }
-      },
-      watch: {
-        dialog: function dialog(val) {
-          val || this.close();
-        },
-        dialogDelete: function dialogDelete(val) {
-          val || this.closeDelete();
-        }
-      },
-      created: function created() {
-        this.initialize();
-      },
-      methods: {
-        initialize: function initialize() {
-          this.tasks = this.tasks;
-        }
-      },
-      editItem: function editItem(item) {
-        this.editedIndex = this.tasks.indexOf(item);
-        this.editedItem = Object.assign({}, item);
-        this.dialog = true;
-      },
-      deleteItem: function deleteItem(item) {
-        this.editedIndex = this.tasks.indexOf(item);
-        this.editedItem = Object.assign({}, item);
-        this.dialogDelete = true;
-      },
-      deleteItemConfirm: function deleteItemConfirm() {
-        this.tasks.splice(this.editedIndex, 1);
-        this.closeDelete();
-      },
-      close: function close() {
-        var _this = this;
-
-        this.dialog = false;
-        this.$nextTick(function () {
-          _this.editedItem = Object.assign({}, _this.defaultItem);
-          _this.editedIndex = -1;
-        });
-      },
-      closeDelete: function closeDelete() {
-        var _this2 = this;
-
-        this.dialogDelete = false;
-        this.$nextTick(function () {
-          _this2.editedItem = Object.assign({}, _this2.defaultItem);
-          _this2.editedIndex = -1;
-        });
-      },
-      save: function save() {
-        if (this.editedIndex > -1) {
-          Object.assign(this.tasks[this.editedIndex], this.editedItem);
-        } else {
-          this.tasks.push(this.editedItem);
-        }
-
-        this.close();
       }
     };
+  },
+  computed: {
+    formTitle: function formTitle() {
+      return this.editedIndex === -1 ? 'New Task' : 'Edit Task';
+    }
+  },
+  watch: {
+    dialog: function dialog(val) {
+      val || this.close();
+    },
+    dialogDelete: function dialogDelete(val) {
+      val || this.closeDelete();
+    }
+  },
+  created: function created() {
+    this.initialize();
+  },
+  methods: {
+    initialize: function initialize() {
+      this.tasksArray = this.tasks;
+    },
+    editItem: function editItem(item) {
+      this.editedIndex = this.tasksArray.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialog = true;
+    },
+    deleteItem: function deleteItem(item) {
+      this.editedIndex = this.tasksArray.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialogDelete = true;
+    },
+    deleteItemConfirm: function deleteItemConfirm() {
+      this.tasks.splice(this.editedIndex, 1);
+      this.closeDelete();
+    },
+    close: function close() {
+      var _this = this;
+
+      this.dialog = false;
+      this.$nextTick(function () {
+        _this.editedItem = Object.assign({}, _this.defaultItem);
+        _this.editedIndex = -1;
+      });
+    },
+    closeDelete: function closeDelete() {
+      var _this2 = this;
+
+      this.dialogDelete = false;
+      this.$nextTick(function () {
+        _this2.editedIndex = -1;
+        axios["delete"]('/task/' + _this2.editedItem.id, _this2.editedItem, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then(function (response) {
+          _this2.close();
+
+          console.log(_this2.info);
+          _this2.formHasSuccess = true;
+        })["catch"](function (error) {
+          _this2.formHasErrors = true;
+          console.log(error);
+        });
+        _this2.editedItem = Object.assign({}, _this2.defaultItem);
+      });
+    },
+    save: function save() {
+      var _this3 = this;
+
+      if (this.editedIndex > -1) {
+        axios.put('/task/' + this.editedItem.id, this.editedItem, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then(function (response) {
+          _this3.close();
+
+          console.log(_this3.info);
+          _this3.formHasSuccess = true;
+        })["catch"](function (error) {
+          _this3.formHasErrors = true;
+          console.log(error);
+        });
+        Object.assign(this.tasksArray[this.editedIndex], this.editedItem);
+      } else {
+        axios.post('/task/', this.editedItem, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then(function (response) {
+          // Object.assign(response.data)
+          _this3.editedItem.id = response.data.id;
+          _this3.editedItem.description = response.data.description;
+
+          _this3.tasksArray.push(_this3.editedItem);
+
+          _this3.close();
+
+          console.log(_this3.info);
+          _this3.formHasSuccess = true;
+        })["catch"](function (error) {
+          _this3.formHasErrors = true;
+          console.log(error);
+        });
+      }
+
+      this.close();
+    }
   }
 });
 
@@ -37714,134 +37752,110 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "v-app",
-    [
-      _c("v-data-table", {
-        staticClass: "elevation-1",
-        attrs: {
-          headers: _vm.headers,
-          items: _vm.tasks,
-          "sort-by": "calories"
-        },
-        scopedSlots: _vm._u([
-          {
-            key: "top",
-            fn: function() {
-              return [
+  return _c("v-data-table", {
+    staticClass: "elevation-1",
+    attrs: { headers: _vm.headers, items: _vm.tasks, "sort-by": "calories" },
+    scopedSlots: _vm._u([
+      {
+        key: "top",
+        fn: function() {
+          return [
+            _c(
+              "v-toolbar",
+              { attrs: { flat: "" } },
+              [
+                _c("v-toolbar-title", [_vm._v("My Tasks")]),
+                _vm._v(" "),
+                _c("v-divider", {
+                  staticClass: "mx-4",
+                  attrs: { inset: "", vertical: "" }
+                }),
+                _vm._v(" "),
+                _c("v-spacer"),
+                _vm._v(" "),
                 _c(
-                  "v-toolbar",
-                  { attrs: { flat: "" } },
-                  [
-                    _c("v-toolbar-title", [_vm._v("Task List")]),
-                    _vm._v(" "),
-                    _c("v-divider", {
-                      staticClass: "mx-4",
-                      attrs: { inset: "", vertical: "" }
-                    }),
-                    _vm._v(" "),
-                    _c("v-spacer"),
-                    _vm._v(" "),
-                    _c(
-                      "v-dialog",
+                  "v-dialog",
+                  {
+                    attrs: { "max-width": "500px" },
+                    scopedSlots: _vm._u([
                       {
-                        attrs: { "max-width": "500px" },
-                        scopedSlots: _vm._u([
-                          {
-                            key: "activator",
-                            fn: function(ref) {
-                              var on = ref.on
-                              var attrs = ref.attrs
-                              return [
-                                _c(
+                        key: "activator",
+                        fn: function(ref) {
+                          var on = ref.on
+                          var attrs = ref.attrs
+                          return [
+                            _c(
+                              "v-btn",
+                              _vm._g(
+                                _vm._b(
+                                  {
+                                    staticClass: "mb-2",
+                                    attrs: { color: "primary", dark: "" }
+                                  },
                                   "v-btn",
-                                  _vm._g(
-                                    _vm._b(
-                                      {
-                                        staticClass: "mb-2",
-                                        attrs: { color: "primary", dark: "" }
-                                      },
-                                      "v-btn",
-                                      attrs,
-                                      false
-                                    ),
-                                    on
-                                  ),
-                                  [
-                                    _vm._v(
-                                      "\n                            New Item\n                        "
-                                    )
-                                  ]
+                                  attrs,
+                                  false
+                                ),
+                                on
+                              ),
+                              [
+                                _vm._v(
+                                  "\n                        New Item\n                    "
                                 )
                               ]
-                            }
-                          }
-                        ]),
-                        model: {
-                          value: _vm.dialog,
-                          callback: function($$v) {
-                            _vm.dialog = $$v
-                          },
-                          expression: "dialog"
+                            )
+                          ]
                         }
+                      }
+                    ]),
+                    model: {
+                      value: _vm.dialog,
+                      callback: function($$v) {
+                        _vm.dialog = $$v
                       },
+                      expression: "dialog"
+                    }
+                  },
+                  [
+                    _vm._v(" "),
+                    _c(
+                      "v-card",
                       [
+                        _c("v-card-title", [
+                          _c("span", { staticClass: "headline" }, [
+                            _vm._v(_vm._s(_vm.formTitle))
+                          ])
+                        ]),
                         _vm._v(" "),
                         _c(
-                          "v-card",
+                          "v-card-text",
                           [
-                            _c("v-card-title", [
-                              _c("span", { staticClass: "headline" }, [
-                                _vm._v(_vm._s(_vm.formTitle))
-                              ])
-                            ]),
-                            _vm._v(" "),
                             _c(
-                              "v-card-text",
+                              "v-container",
                               [
                                 _c(
-                                  "v-container",
+                                  "v-row",
                                   [
                                     _c(
-                                      "v-row",
+                                      "v-col",
+                                      {
+                                        attrs: { cols: "12", sm: "6", md: "12" }
+                                      },
                                       [
-                                        _c("v-col", {
-                                          attrs: {
-                                            cols: "12",
-                                            sm: "6",
-                                            md: "4"
+                                        _c("v-text-field", {
+                                          attrs: { label: "Task" },
+                                          model: {
+                                            value: _vm.editedItem.description,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.editedItem,
+                                                "description",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "editedItem.description"
                                           }
-                                        }),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-col",
-                                          {
-                                            attrs: {
-                                              cols: "12",
-                                              sm: "6",
-                                              md: "4"
-                                            }
-                                          },
-                                          [
-                                            _c("v-text-field", {
-                                              attrs: { label: "Description" },
-                                              model: {
-                                                value:
-                                                  _vm.editedItem.description,
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.editedItem,
-                                                    "description",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression:
-                                                  "editedItem.description"
-                                              }
-                                            })
-                                          ],
-                                          1
-                                        )
+                                        })
                                       ],
                                       1
                                     )
@@ -37850,96 +37864,40 @@ var render = function() {
                                 )
                               ],
                               1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-card-actions",
-                              [
-                                _c("v-spacer"),
-                                _vm._v(" "),
-                                _c(
-                                  "v-btn",
-                                  {
-                                    attrs: { color: "blue darken-1", text: "" },
-                                    on: { click: _vm.close }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                Cancel\n                            "
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-btn",
-                                  {
-                                    attrs: { color: "blue darken-1", text: "" },
-                                    on: { click: _vm.save }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                Save\n                            "
-                                    )
-                                  ]
-                                )
-                              ],
-                              1
                             )
                           ],
                           1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-dialog",
-                      {
-                        attrs: { "max-width": "500px" },
-                        model: {
-                          value: _vm.dialogDelete,
-                          callback: function($$v) {
-                            _vm.dialogDelete = $$v
-                          },
-                          expression: "dialogDelete"
-                        }
-                      },
-                      [
+                        ),
+                        _vm._v(" "),
                         _c(
-                          "v-card",
+                          "v-card-actions",
                           [
-                            _c("v-card-title", { staticClass: "headline" }, [
-                              _vm._v(
-                                "Are you sure you want to delete this item?"
-                              )
-                            ]),
+                            _c("v-spacer"),
                             _vm._v(" "),
                             _c(
-                              "v-card-actions",
+                              "v-btn",
+                              {
+                                attrs: { color: "blue darken-1", text: "" },
+                                on: { click: _vm.close }
+                              },
                               [
-                                _c("v-spacer"),
-                                _vm._v(" "),
-                                _c(
-                                  "v-btn",
-                                  {
-                                    attrs: { color: "blue darken-1", text: "" },
-                                    on: { click: _vm.closeDelete }
-                                  },
-                                  [_vm._v("Cancel")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-btn",
-                                  {
-                                    attrs: { color: "blue darken-1", text: "" },
-                                    on: { click: _vm.deleteItemConfirm }
-                                  },
-                                  [_vm._v("OK")]
-                                ),
-                                _vm._v(" "),
-                                _c("v-spacer")
-                              ],
-                              1
+                                _vm._v(
+                                  "\n                            Cancel\n                        "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: { color: "blue darken-1", text: "" },
+                                on: { click: _vm.save }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            Save\n                        "
+                                )
+                              ]
                             )
                           ],
                           1
@@ -37949,50 +37907,111 @@ var render = function() {
                     )
                   ],
                   1
-                )
-              ]
-            },
-            proxy: true
-          },
-          {
-            key: "item.actions",
-            fn: function(ref) {
-              var item = ref.item
-              return [
-                _c(
-                  "v-icon",
-                  {
-                    staticClass: "mr-2",
-                    attrs: { small: "" },
-                    on: {
-                      click: function($event) {
-                        return _vm.editItem(item)
-                      }
-                    }
-                  },
-                  [_vm._v("\n                mdi-pencil\n            ")]
                 ),
                 _vm._v(" "),
                 _c(
-                  "v-icon",
+                  "v-dialog",
                   {
-                    attrs: { small: "" },
-                    on: {
-                      click: function($event) {
-                        return _vm.deleteItem(item)
-                      }
+                    attrs: { "max-width": "500px" },
+                    model: {
+                      value: _vm.dialogDelete,
+                      callback: function($$v) {
+                        _vm.dialogDelete = $$v
+                      },
+                      expression: "dialogDelete"
                     }
                   },
-                  [_vm._v("\n                mdi-delete\n            ")]
+                  [
+                    _c(
+                      "v-card",
+                      [
+                        _c("v-card-title", { staticClass: "headline" }, [
+                          _vm._v("Are you sure you want to delete this item?")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-actions",
+                          [
+                            _c("v-spacer"),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: { color: "blue darken-1", text: "" },
+                                on: { click: _vm.closeDelete }
+                              },
+                              [_vm._v("Cancel")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: { color: "blue darken-1", text: "" },
+                                on: { click: _vm.deleteItemConfirm }
+                              },
+                              [_vm._v("OK")]
+                            ),
+                            _vm._v(" "),
+                            _c("v-spacer")
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
                 )
-              ]
-            }
-          }
-        ])
-      })
-    ],
-    1
-  )
+              ],
+              1
+            )
+          ]
+        },
+        proxy: true
+      },
+      {
+        key: "item.actions",
+        fn: function(ref) {
+          var item = ref.item
+          return [
+            _c(
+              "v-icon",
+              {
+                staticClass: "mr-2",
+                attrs: { small: "" },
+                on: {
+                  click: function($event) {
+                    return _vm.editItem(item)
+                  }
+                }
+              },
+              [_vm._v("\n            mdi-pencil\n        ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "v-icon",
+              {
+                attrs: { small: "" },
+                on: {
+                  click: function($event) {
+                    return _vm.deleteItem(item)
+                  }
+                }
+              },
+              [_vm._v("\n            mdi-delete\n        ")]
+            )
+          ]
+        }
+      },
+      {
+        key: "no-data",
+        fn: function() {
+          return [_c("p", [_vm._v("No Tasks")])]
+        },
+        proxy: true
+      }
+    ])
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
